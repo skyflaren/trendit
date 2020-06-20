@@ -1,9 +1,21 @@
 <!doctype html>
 <html>
     <head>
-        <title>Home page</title>
+        <title>Trendit</title>
+<!--        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">-->
+        <link rel= "stylesheet" href= "{{ url_for('static',filename='css/style.css') }}">
     </head>
     <body>
-        <h1>Home Page!</h1>
+        <div class="trending">
+            <h1>TRENDING</h1>
+<!--            <hr id="trending-bar">-->
+<!--            {% for search in trendingSearches %}-->
+<!--                <a>{{search}}</a>-->
+<!--            {% endfor %}-->
+        </div>
+
+<!--        <div class="search-bar">-->
+<!--            -->
+<!--        </div>-->
     </body>
 </html>
