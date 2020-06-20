@@ -6,8 +6,9 @@
     --gry1: #2A2A2A;
     /* main grey */
     --gry2: #313131;
+    --gry25: #3b3b3b;
     /* mid grey */
-    --gry3: #949494
+    --gry3: #949494;
     /* light grey */
     --gry4: #D4D4D4;
 
@@ -20,15 +21,44 @@ html{
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    margin: 0px;
+    font-family: 'Raleway', sans-serif;
 }
 
-h1{
-    color: var(--orange1);
-    font-size: 20;
+.trending hr{
+    margin: 10px 20%;
+    height: 2px;
+    width: calc(100%-20px);
+    background-color: var(--gry25);
+    border: none;
 }
 
 .trending{
-    width: 30%;
+    max-width: 15vw;
+    min-width: 100px;
+    height: 100vh;
     background-color: var(--gry1);
+    padding: 0px 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.trending h1{
+    color: var(--orange1);
+    font-size: calc(1vw + 10px);
+    font-weight: 300;
+    margin: 0px auto;
+}
+
+.trending-suggestion{
+    font-size: 90%;
+    color: var(--gry4);
+}
+
+
+.trending-suggestion:hover{
+    color: var(--gry3);
 }
