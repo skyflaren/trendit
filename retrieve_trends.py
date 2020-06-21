@@ -93,9 +93,14 @@ def get_sites(data):
 
     for search,temp in data[2]:
         if temp > 60:
-            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
+
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36"}
+
+            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date, headers)
             sleep(1)
-            # https://www.google.com/search?q=osu+before:2020-01-26+after:2020-01-22
+            print(page)
+
             soup = BeautifulSoup(page.content, 'html.parser')
             links = soup.find_all("a")
             strlinks = []
@@ -108,7 +113,25 @@ def get_sites(data):
                         idx = len(st)
                     strlinks.append(i["href"][7:idx])
             ret += strlinks[:2]
-    print(ret)
+
+            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws",
+                                headers)
+            sleep(1)
+            print(page)
+
+            soup = BeautifulSoup(page.content, 'html.parser')
+            links = soup.find_all("a")
+            strlinks = []
+            for i in links:
+                st = i["href"][:7]
+                if st == "/url?q=" and "youtube" not in i["href"]:
+                    if "&sa=" in i["href"]:
+                        idx = i["href"].index("&sa=")
+                    else:
+                        idx = len(st)
+                    strlinks.append(i["href"][7:idx])
+            ret += strlinks[:1]
+
     return ret
 
 
@@ -130,5 +153,6 @@ for i in range(3):
     else:
         links += get_sites(query)
 
+links = set(links)
 for link in links:
     print(link)
