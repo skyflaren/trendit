@@ -24,6 +24,7 @@ html{
     text-decoration: none;
     margin: 0px;
     font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
 }
 
 .trending hr{
@@ -57,10 +58,13 @@ html{
     font-size: 90%;
     color: var(--gry3);
     margin: 5px auto;
+
+    transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
 }
 
 .trending-suggestion:hover{
-    color: var(--gry2);
+    opacity: 0.7
 }
 
 .searchbar{
@@ -87,4 +91,46 @@ html{
 .homepage{
     display: flex;
     flex-direction: row;
+}
+
+.searchbar div{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.example{
+    z-index: 2;
+    display: inline-block;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
 }
