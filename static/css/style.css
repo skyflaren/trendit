@@ -35,8 +35,8 @@ html{
 }
 
 .trending{
-    max-width: 15vw;
-    min-width: 100px;
+    width: 15vw;
+    min-width: 120px;
     height: 100vh;
     background-color: var(--gry1);
     padding: 0px 10px;
@@ -61,6 +61,30 @@ html{
 
 .trending-suggestion:hover{
     color: var(--gry2);
-
 }
 
+.searchbar{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchbar .globe{
+    width: 35vw;
+    max-width: 80vh;
+    margin: auto;
+    margin-top: -15vw;
+}
+
+.searchbar .moon{
+    width: 7vw;
+    max-width: 12vh;
+    margin: auto;
+    margin-top: -15vw;
+    margin-right: 0.5vw;
+}
+
+.homepage{
+    display: flex;
+    flex-direction: row;
+}

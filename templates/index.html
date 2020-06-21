@@ -6,19 +6,22 @@
         <link rel= "stylesheet" href= "{{ url_for('static',filename='css/style.css') }}">
     </head>
     <body>
-        <div class="trending">
-            <h1>TRENDING</h1>
-            <hr class="trending-bar">
-<!--            {% for search in trendingSearches %}-->
-<!--                <a class="trending-suggestion">{{search}}</a>-->
-<!--            {% endfor %}-->
-            <a class="trending-suggestion" href="google.ca">afdsf</a>
-            <a class="trending-suggestion" href="google.ca">waersdf</a>
-            <a class="trending-suggestion" href="google.ca">hdfh</a>
-        </div>
+        <div class="homepage">
+            <div class="trending">
+                <h1>TRENDING</h1>
+                <hr class="trending-bar">
+<!--                {% for search in trendingSearches %}-->
+<!--                    <a class="trending-suggestion">{{search}}</a>-->
+<!--                {% endfor %}-->
+                <a class="trending-suggestion" href="google.ca">afdsf</a>
+                <a class="trending-suggestion" href="google.ca">waersdf</a>
+                <a class="trending-suggestion" href="google.ca">hdfh</a>
+            </div>
 
-        <div class="search-bar">
-
+            <div class="searchbar">
+                <img class="globe" src="{{ url_for('static',filename='img/globe.svg') }}">
+                <img class="moon" src="{{ url_for('static',filename='img/moon.svg') }}">
+            </div>
         </div>
     </body>
 </html>
