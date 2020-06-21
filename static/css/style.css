@@ -45,6 +45,9 @@ html{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    -webkit-display: flex;
+    -webkit-flex-direction: column;
+    -webkit-justfy-content: center;
 }
 
 .trending h1{
@@ -71,6 +74,8 @@ html{
     margin: auto;
     display: flex;
     flex-direction: column;
+    -webkit-display: flex;
+    -webkit-flex-direction: column;
 }
 
 .searchbar #globe{
@@ -91,11 +96,15 @@ html{
 .homepage{
     display: flex;
     flex-direction: row;
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
 }
 
 .searchbar div{
     display: flex;
     flex-direction: column;
+    -webkit-display: flex;
+    -webkit-flex-direction: column;
 }
 
 
@@ -112,9 +121,15 @@ html{
     border-bottom: 2px solid rgba(148, 148, 148, 0.5);
     float: left;
     width: 80%;
-    background: rgba(241, 241, 241, 0.5);
+    background: rgba(241, 241, 241, 0.2);
 
-    color
+    color: white;
+    -webkit-text-fill-color: white;
+
+    outline: none;
+
+    -webkit-outline: solid;
+    -webkit-outline-color: var(--orange1);
 }
 
 #example input[type=text]:hover{
@@ -125,14 +140,14 @@ html{
     float: left;
     width: 20%;
     padding: 10px;
-    background: var(gry3)
+    background: var(--gry3);
     color: white;
     font-size: 17px;
     border: none;
     border-bottom: 2px solid var(--gry3);
     cursor: pointer;
 
-    opacity: 0.5;
+    opacity: 0.7;
     transition: opacity 0.2s;
     -webkit-transition: opacity 0.2s;
 }
