@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>Trendit</title>
+        <link rel= "stylesheet" href= "{{ url_for('static',filename='css/style.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="homepage">
+            <div class="trending">
+                <h1>TRENDING</h1>
+                <hr class="trending-bar">
+                {% for search in trendingSearches %}
+                    <a class="trending-suggestion">{{search}}</a>
+                {% endfor %}
+
+                <div class="icons">
+                    <a style="display:inline-block;" href="https://github.com/skyflaren/trendit"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    <a style="display:inline-block;" href="https://github.com/skyflaren/trendit"><img class="fa devpost" src="{{ url_for('static',filename='img/devpost.png') }}"></img></a>
+                </div>
+            </div>
+
+            <div class="searchbar">
+                <div>
+                    <img id="globe" src="{{ url_for('static',filename='img/globe.svg') }}">
+                    <img id="moon" src="{{ url_for('static',filename='img/moon.svg') }}">
+                </div>
+
+                <form id="example" action="#" method = "post">
+                    <input type="text" placeholder="Search.." name="nm">
+                    <button id="submit" type="submit"><i class="fa fa-search"></i></button>
+                    <script src= "{{ url_for('static',filename='js/moon.js') }}"></script>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -16,7 +16,10 @@ def index():
 
 @app.route("/<usr>")
 def user(usr):
-    return f"<h1>{usr}</h1>"
+    if(usr == "results"):
+        return render_template("results.html", trendingSearches=get_trending_list());
+    else:
+        return f"<h1>{usr}</h1>"
 
 if __name__ == "__main__":
     app.run(debug=True)

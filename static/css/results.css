@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap');
+
+:root {
+    /* dark grey */
+    --gry1: #2A2A2A;
+    /* main grey */
+    --gry2: #313131;
+    --gry25: #3b3b3b;
+    /* mid grey */
+    --gry3: #949494;
+    /* light grey */
+    --gry4: #D4D4D4;
+
+    /* main grey */
+    --orange1: #e49967;
+}
+
+html{
+    background-color: var(--gry2);
+}
+
+* {
+    text-decoration: none;
+    margin: 0px;
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
+}
+
+.trending hr{
+    margin: 10px 20%;
+    height: 2px;
+    width: calc(100%-20px);
+    background-color: var(--gry25);
+    border: none;
+}
+
+.trending{
+    width: 15vw;
+    min-width: 120px;
+    height: 100vh;
+    background-color: var(--gry1);
+    padding: 20vh 10px;
+    padding-bottom: 20vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-flex-direction: column;
+}
+
+.trending h1{
+    color: var(--orange1);
+    font-size: calc(1vw + 10px);
+    font-weight: 300;
+    margin: 0px auto;
+}
+
+.trending-suggestion{
+    font-size: 90%;
+    color: var(--gry3);
+    margin: 5px auto;
+
+    transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
+}
+
+.trending-suggestion:hover{
+    opacity: 0.7
+}
+
+.icons{
+    position: absolute;
+    bottom: 10px;
+    width: calc(15vw - 20px);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -webkit-justify-content: center;
+    -ms-flex-direction: row;
+}
+
+.link{
+    display: inline-block;
+}
+
+.fa-github, .devpost{
+    color: var(--gry3);
+    padding: 0px 0.5vw;
+    opacity: 1;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+}
+
+.fa-github:hover, .devpost:hover{
+    opacity: 0.6;
+    color: var(--orange1);
+}
+
+.devpost{
+    height: 12px;
+}
+
+
+.searchbar{
+    margin: auto;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+}
+
+.searchbar #globe{
+    width: 35vw;
+    max-width: 80vh;
+    margin: auto;
+    margin-top: -5vw;
+}
+
+.searchbar #moon{
+    width: 7vw;
+    max-width: 12vh;
+    margin: auto;
+    margin-top: -15vw;
+    margin-right: 0vw;
+}
+
+.homepage{
+    display: flex;
+    flex-direction: row;
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+}
+
+.searchbar div{
+    display: flex;
+    flex-direction: column;
+    -webkit-display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+}
+
+
+#example{
+    z-index: 2;
+    display: inline-block;
+}
+
+#example input[type=text] {
+    order: 1;
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-bottom: 2px solid rgba(148, 148, 148, 0.5);
+    float: left;
+    width: 80%;
+    background: rgba(241, 241, 241, 0.2);
+
+    color: white;
+    -webkit-text-fill-color: white;
+
+    outline: none;
+
+    -webkit-outline: solid;
+    -webkit-outline-color: var(--orange1);
+}
+
+#example input[type=text]:hover{
+    background: 2px solid rgba(148, 148, 148, 0.5)
+}
+
+
+#example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: var(--gry3);
+    color: white;
+    font-size: 17px;
+    border: none;
+    border-bottom: 2px solid var(--gry3);
+    cursor: pointer;
+
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
+}
+
+#example button:hover {
+    opacity: 0.9;
+}
+
+#example::after {
+    content: "";
+    clear: both;
+    display: table;
+}
