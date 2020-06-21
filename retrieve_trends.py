@@ -108,7 +108,7 @@ def get_sites(data):
                         idx = i["href"].index("&sa=")
                     else:
                         idx = len(st)
-                    strlinks.append(i["href"][7:idx])
+                    strlinks.append([i["href"][7:idx],0])
             ret += strlinks[:2]
 
             page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws")
@@ -126,7 +126,7 @@ def get_sites(data):
                         idx = i["href"].index("&sa=")
                     else:
                         idx = len(st)
-                    strlinks.append(i["href"][7:idx])
+                    strlinks.append([i["href"][7:idx],1])
             ret += strlinks[:1]
 
     return ret

@@ -20,10 +20,21 @@ for i in range(3):
     else:
         links += get_sites(query)
 
-links = set(links)
-for link in links:
-    text = search(link)
-    if len(text) < 5000:
-        print(link)
-        print(keywords(text))
-        print(summarize(text, 0.15))
+visited = set()
+
+entries = []
+
+for link, val in links:
+    if link not in visited:
+        text = search(link)
+        visited.add(link)
+        summary = ""
+        if len(text) < 8000 and val == 1:
+            summary = summarize(text, words=100)
+
+        entries.append([link, summary])
+
+for l, s in entries:
+    print(l)
+    print(s)
+
