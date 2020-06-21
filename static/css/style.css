@@ -24,6 +24,7 @@ html{
     text-decoration: none;
     margin: 0px;
     font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
 }
 
 .trending hr{
@@ -35,8 +36,8 @@ html{
 }
 
 .trending{
-    max-width: 15vw;
-    min-width: 100px;
+    width: 15vw;
+    min-width: 120px;
     height: 100vh;
     background-color: var(--gry1);
     padding: 0px 10px;
@@ -57,10 +58,79 @@ html{
     font-size: 90%;
     color: var(--gry3);
     margin: 5px auto;
+
+    transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
 }
 
 .trending-suggestion:hover{
-    color: var(--gry2);
-
+    opacity: 0.7
 }
 
+.searchbar{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchbar #globe{
+    width: 35vw;
+    max-width: 80vh;
+    margin: auto;
+    margin-top: -15vw;
+}
+
+.searchbar #moon{
+    width: 7vw;
+    max-width: 12vh;
+    margin: auto;
+    margin-top: -15vw;
+    margin-right: 0.5vw;
+}
+
+.homepage{
+    display: flex;
+    flex-direction: row;
+}
+
+.searchbar div{
+    display: flex;
+    flex-direction: column;
+}
+
+
+#example{
+    z-index: 2;
+    display: inline-block;
+}
+
+#example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+#example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+#example button:hover {
+  background: #0b7dda;
+}
+
+#example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
