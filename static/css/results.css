@@ -109,8 +109,9 @@ html{
     height: 12px;
 }
 
-
 .searchbar{
+    position: relative;
+    top: 30px;
     margin: auto;
     height: 50%;
     display: flex;
@@ -120,19 +121,16 @@ html{
     -ms-flex-direction: column;
 }
 
-#globe{
-    width: 35vw;
-    max-width: 80vh;
-    margin: auto;
-    margin-top: -5vw;
+#globe-mini-par{
+    display: inline-block;
+    height: 40px;
 }
 
-#moon{
-    width: 7vw;
-    max-width: 12vh;
-    margin: auto;
-    margin-top: -15vw;
-    margin-right: 0vw;
+#globe-mini{
+    position: relative;
+    display: block;
+    height: 100%;
+    margin-right: 10px;
 }
 
 .homepage{
@@ -143,37 +141,49 @@ html{
     -ms-flex-direction: row;
 }
 
-.searchbar div{
-    display: flex;
+.main-area{
+    height: 100%;
+    display: table;
+    margin: 10px auto;
+    width: 78%;
     flex-direction: column;
-    -webkit-display: flex;
     -webkit-flex-direction: column;
-    -ms-flex-direction: column;
 }
 
+.link-results{
+    margin-top: 60px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: var(--gry1);
+}
 
 #example{
-    z-index: 2;
     display: inline-block;
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+
+    height: 40px;
 }
 
 #example input[type=text] {
-    order: 1;
     padding: 10px;
     font-size: 17px;
     border: none;
     border-bottom: 2px solid rgba(148, 148, 148, 0.5);
     float: left;
-    width: 80%;
+    width: 70%;
     background: rgba(241, 241, 241, 0.2);
 
     color: white;
     -webkit-text-fill-color: white;
 
     outline: none;
-
-    -webkit-outline: solid;
-    -webkit-outline-color: var(--orange1);
 }
 
 #example input[type=text]:hover{
@@ -183,7 +193,7 @@ html{
 
 #example button {
     float: left;
-    width: 20%;
+    width: 15%;
     padding: 10px;
     background: var(--gry3);
     color: white;
@@ -206,3 +216,6 @@ html{
     clear: both;
     display: table;
 }
+
+
+
