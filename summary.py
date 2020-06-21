@@ -62,4 +62,4 @@ def get_results(topic, amt, unit, region):
         print(s)
     return entries
 
-get_results("python programming","1","Y","WW")
+#get_results("python programming","1","Y","WW")

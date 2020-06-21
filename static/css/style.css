@@ -121,7 +121,6 @@ html{
 .searchbar #globe{
     width: 35vw;
     max-width: 80vh;
-    margin: auto;
     margin-top: -5vw;
 }
 
@@ -147,9 +146,11 @@ html{
     -webkit-display: flex;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
+    margin: auto;
 }
 
 .input-field{
+   padding: 10px;
    width: 25%
    display: block;
    color: var(--gry3) !important;
@@ -182,7 +183,7 @@ option {
 }
 
 #descript{
-    width: 25%
+    /*width: 25%*/
     padding: 10px;
     background: rgba(59, 59, 59, 0.7);
     border-right: 2px solid var(--gry2);

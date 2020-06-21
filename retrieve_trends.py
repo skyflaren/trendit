@@ -48,6 +48,9 @@ def get_query(ind, topic, amt, unit, region):
 
     largest_interest_dates = largest_interest.index
 
+    if len(largest_interest_dates) <= ind:
+        return [str(old_date),str(current_date),[],topic]
+
     # for index, row in pytrends.related_topics()[topic]['top'].iterrows():
     #     print(row)
 
