@@ -21,11 +21,11 @@
 
             <div class="searchbar">
                 <div>
-                    <img class="globe" src="{{ url_for('static',filename='img/globe.svg') }}">
-                    <img class="moon" src="{{ url_for('static',filename='img/moon.svg') }}">
+                    <img id="globe" src="{{ url_for('static',filename='img/globe.svg') }}">
+                    <img id="moon" src="{{ url_for('static',filename='img/moon.svg') }}">
                 </div>
 
-                <form class="example" action="#" method = "post">
+                <form id="example" action="#" method = "post">
                     <input type="text" placeholder="Search.." name="nm">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
