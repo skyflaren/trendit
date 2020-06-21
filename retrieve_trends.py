@@ -1,4 +1,6 @@
 from pytrends.request import TrendReq
+import requests
+from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 from collections import defaultdict
 import pandas as pd
