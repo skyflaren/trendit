@@ -93,7 +93,7 @@ def get_sites(data):
 
     for search,temp in data[2]:
         if temp > 60:
-            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date, headers)
+            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
             sleep(1)
             print(page)
 
@@ -102,7 +102,8 @@ def get_sites(data):
             strlinks = []
             for i in links:
                 st = i["href"][:7]
-                if st == "/url?q=" and "youtube" not in i["href"]:
+                if st == "/url?q=" and "youtube" not in i["href"] and "support.google" not in i["href"] and "amazon.com" not in i["href"]\
+                        and "accounts.google" not in i["href"]:
                     if "&sa=" in i["href"]:
                         idx = i["href"].index("&sa=")
                     else:
@@ -110,8 +111,7 @@ def get_sites(data):
                     strlinks.append(i["href"][7:idx])
             ret += strlinks[:2]
 
-            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws",
-                                headers)
+            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws")
             sleep(1)
             print(page)
 
@@ -120,7 +120,8 @@ def get_sites(data):
             strlinks = []
             for i in links:
                 st = i["href"][:7]
-                if st == "/url?q=" and "youtube" not in i["href"]:
+                if st == "/url?q=" and "youtube" not in i["href"] and "support.google" not in i["href"] and "amazon.com" not in i["href"]\
+                        and "accounts.google" not in i["href"]:
                     if "&sa=" in i["href"]:
                         idx = i["href"].index("&sa=")
                     else:
@@ -141,25 +142,3 @@ def search(page):
     return txt
 
 
-topic = input("What would you like to search for? ")
-
-timeframe = ""
-options = ["1-y","1-m","7-d"]
-
-# gets time frame input
-while timeframe not in options:
-    timeframe = input("Select a timeframe (1-y, 1-m, 7-d): ")
-
-links = []
-
-for i in range(3):
-    query = get_query(i, topic, timeframe)
-    if query is None:
-        print("No large events found, please try refining your search terms")
-    else:
-        links += get_sites(query)
-
-links = set(links)
-for link in links:
-    print(link)
-    print(search(link))
