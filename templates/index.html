@@ -21,9 +21,8 @@
                     <a style="display:inline-block;" href="https://github.com/skyflaren/trendit"><img class="fa devpost" src="{{ url_for('static',filename='img/devpost.png') }}"></img></a>
                 </div>
             </div>
-
             <div class="searchbar">
-                <div>
+                <div class = "images">
                     <img id="globe" src="{{ url_for('static',filename='img/globe.svg') }}">
                     <img id="moon" src="{{ url_for('static',filename='img/moon.svg') }}">
                 </div>
@@ -33,7 +32,36 @@
                     <button id="submit" type="submit"><i class="fa fa-search"></i></button>
                     <script src= "{{ url_for('static',filename='js/moon.js') }}"></script>
                 </form>
+                <div class = "options">
+
+                    <label id = "descript" >Results in the last: </label>
+                    <select id="quant" class="input-field">
+                            <option value="">1</option>
+                            <option value="1">2</option>
+                            <option value="1">3</option>
+                            <option value="1">4</option>
+                            <option value="1">5</option>
+                            <option value="1">6</option>
+                    </select>
+                    <select id="units" class="input-field">
+                            <option value="">Hour(s)</option>
+                            <option value="1">Day(s)</option>
+                            <option value="1">Month(s)</option>
+                            <option value="1">Year(s)</option>
+
+                    </select>
+                    <select id="region" class="input-field">
+                            <option value="">- Category -</option>
+                            <option value="1">Manufacturing</option>
+                            <option value="1">Shipping</option>
+                            <option value="1">Administration</option>
+                            <option value="1">Human Resources</option>
+                    </select>
+                    <script src= "{{ url_for('static',filename='js/parse.js') }}"></script>
+                </div>
+
             </div>
+
         </div>
     </body>
 </html>

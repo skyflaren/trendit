@@ -41,7 +41,6 @@ html{
     height: 100vh;
     background-color: var(--gry1);
     padding: 20vh 10px;
-    padding-bottom: 20vh;
 
     display: flex;
     flex-direction: column;
@@ -142,7 +141,7 @@ html{
     -ms-flex-direction: row;
 }
 
-.searchbar div{
+.images{
     display: flex;
     flex-direction: column;
     -webkit-display: flex;
@@ -150,6 +149,53 @@ html{
     -ms-flex-direction: column;
 }
 
+.input-field{
+   width: 25%
+   display: block;
+   color: var(--gry3) !important;
+   background: rgba(59, 59, 59, 0.7);
+   border-right: 2px solid var(--gry2) !important;
+   z-index: 2;
+   position: relative;
+   border: none;
+   outline: none;
+}
+
+/*
+#quant{
+    width: 25% !important;
+}
+
+#units{
+    width: 25% !important;
+}
+
+#region{
+    width: 25% ;
+    border: none !important;
+}
+*/
+
+
+option {
+   background-color: var(--gry2);
+}
+
+#descript{
+    width: 25%
+    padding: 10px;
+    background: rgba(59, 59, 59, 0.7);
+    border-right: 2px solid var(--gry2);
+    color: var(--gry3);
+}
+.options{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+}
 
 #example{
     z-index: 2;
@@ -205,3 +251,45 @@ html{
     clear: both;
     display: table;
 }
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+
+/*.parameter hr{
+    margin: 10px 20%;
+    height: 2px;
+    width: calc(100%-20px);
+    background-color: var(--gry25);
+    border: none;
+}
+
+.parameter{
+    width: 15vw;
+    min-width: 120px;
+    height: 100vh;
+    /*background-color: var(--gry1);
+    padding: 20vh 10px;
+
+    display: flex;
+    border-right: 2px solid var(--gry1);
+    flex-direction: column;
+    justify-content: center;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-flex-direction: column;
+}
+
+.parameter-suggestion{
+    font-size: 90%;
+    color: var(--gry3);
+    margin: 5px auto;
+
+    transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
+}
+*/
