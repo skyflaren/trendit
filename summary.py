@@ -1,13 +1,13 @@
 from gevent import monkey as curious_george
 curious_george.patch_all(thread=False, select=False)
-from summa.summarizer import summarize
-from summa.keywords import keywords
+# from summa.summarizer import summarize
+# from summa.keywords import keywords
+from newspaper import Article
+import nltk
 from retrieve_trends import *
 
 def get_results(topic, amt, unit, region):
     topic = topic.strip()
-
-    timeframe = ""
 
     links = []
 
@@ -27,13 +27,23 @@ def get_results(topic, amt, unit, region):
                 news.append(link)
             else:
                 notnews.append(link)
-    for idx, link in enumerate(grequests.map((grequests.get(u) for u in news))):
-        text = search(link)
+    for idx, link in enumerate(news):
+    # for idx, link in enumerate(grequests.map((grequests.get(u) for u in news))):
+        # text = search(link)
+        # summary = summarize(text, words=150)
+        summary = ""
+        try:
+            article = Article(link)
 
-        summary = summarize(text, words=150)
-        if "Cloudflare" in summary:
-            print("Cloudflare")
-            summary = ""
+            article.download()
+            article.parse()
+            article.nlp()
+            summary = article.summary
+            # if "Cloudflare" in summary:
+            #     print("Cloudflare")
+            #     summary = ""
+        except:
+            pass
         entries.append([news[idx], summary])
     for link in notnews:
         entries.append([link, ""])
@@ -48,5 +58,8 @@ def get_results(topic, amt, unit, region):
     #
     #         entries.append([link, summary])
     for l,s in entries:
-        print(l + "   " + s)
+        print(l)
+        print(s)
     return entries
+
+get_results("python programming","1","Y","WW")
