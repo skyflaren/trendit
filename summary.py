@@ -31,13 +31,12 @@ for link, val in links:
         if val:
             news.append(link)
         else:
-            notnews.append(link)
+            entries.append([link,""])
 for idx, link in enumerate(grequests.map((grequests.get(u) for u in news))):
     text = search(link)
     summary = summarize(text, words=100)
     entries.append([news[idx], summary])
-for idx, link in enumerate(grequests.map((grequests.get(u) for u in notnews))):
-    entries.append([notnews[idx], ""])
+    
 
 # for link, val in links:
 #     if link not in visited:

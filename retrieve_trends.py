@@ -3,7 +3,7 @@ curious_george.patch_all(thread=False, select=False)
 from pytrends.request import TrendReq
 import grequests
 from time import sleep
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, SoupStrainer
 from datetime import datetime, timedelta
 from collections import defaultdict
 import pandas as pd
@@ -26,8 +26,8 @@ def get_query(ind, topic, timeframe):
     elif timeframe == "7-d":
         old_time = current_time - timedelta(days=7)
 
-    # print("Time frame:")
-    # print(str(old_time) + " " + str(current_time))
+    print("Time frame:")
+    print(str(old_time) + " " + str(current_time))
 
     kw_list = [topic]
 
@@ -46,12 +46,12 @@ def get_query(ind, topic, timeframe):
 
     largest_interest_dates = largest_interest.index
 
-    # for index, row in pytrends.related_topics()[topic]['top'].iterrows():
-    #     print(row)
+    for index, row in pytrends.related_topics()[topic]['top'].iterrows():
+        print(row)
 
-    # print(largest_interest)
-    # 
-    # print("Day: " + str(largest_interest_dates[ind]))
+    print(largest_interest)
+
+    print("Day: " + str(largest_interest_dates[ind]))
 
     search_time = pd.Timestamp.to_pydatetime(largest_interest_dates[ind])
     search_date_first = datetime.date(search_time)
@@ -71,10 +71,10 @@ def get_query(ind, topic, timeframe):
             break
 
     if related_queries is not None:
-        # print(search_date_first)
-        # print(search_date_second)
-        # 
-        # print(related_queries)
+        print(search_date_first)
+        print(search_date_second)
+
+        print(related_queries)
 
         for index, row in related_queries.iterrows():
             if index > 9:
@@ -100,8 +100,8 @@ def get_sites(data):
             print("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
             notnews.append("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
             news.append("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws")
-           
-    print("beforemap") 
+
+    print("beforemap")
     tmp = grequests.map((grequests.get(u) for u in notnews))
     print("aftermap")
 
@@ -110,7 +110,9 @@ def get_sites(data):
         # sleep(1)
         # print(page)
 
-        soup = BeautifulSoup(page.content, 'html.parser')
+
+        test = SoupStrainer('div',{'id': 'search'})
+        soup = BeautifulSoup(page.content, "html.parser", parse_only=test)
         links = soup.find_all("a")
         strlinks = []
         for i in links:
@@ -133,7 +135,8 @@ def get_sites(data):
         # sleep(1)
         # print(page)
 
-        soup = BeautifulSoup(page.content, 'html.parser')
+        test = SoupStrainer('div', {'id': 'search'})
+        soup = BeautifulSoup(page.content, "html.parser", parse_only=test)
         links = soup.find_all("a")
         strlinks = []
         for i in links:
