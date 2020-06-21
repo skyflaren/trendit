@@ -46,6 +46,7 @@ html{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: fixed;
 
     -webkit-display: flex;
     -webkit-flex-direction: column;
@@ -144,7 +145,8 @@ html{
     height: 100%;
     display: table;
     margin: 10px auto;
-    width: 78%;
+    margin-left: 22.5%;
+    width: 70%;
     flex-direction: column;
     -webkit-flex-direction: column;
 }
