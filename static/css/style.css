@@ -40,7 +40,8 @@ html{
     min-width: 120px;
     height: 100vh;
     background-color: var(--gry1);
-    padding: 20vh 10px 0px;
+    padding: 20vh 10px;
+    padding-bottom: 20vh;
 
     display: flex;
     flex-direction: column;
@@ -162,7 +163,7 @@ html{
     border: none;
     border-bottom: 2px solid rgba(148, 148, 148, 0.5);
     float: left;
-    width: 55%;
+    width: 80%;
     background: rgba(241, 241, 241, 0.2);
 
     color: white;
@@ -181,7 +182,7 @@ html{
 
 #example button {
     float: left;
-    width: 19%;
+    width: 20%;
     padding: 10px;
     background: var(--gry3);
     color: white;
