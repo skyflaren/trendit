@@ -55,10 +55,11 @@ html{
 
 .trending-suggestion{
     font-size: 90%;
-    color: var(--gry4);
+    color: var(--gry3);
+    margin: 5px auto;
 }
 
-
 .trending-suggestion:hover{
-    color: var(--gry3);
+    color: var(--gry2);
+
 }
