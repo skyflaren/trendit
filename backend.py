@@ -10,6 +10,7 @@ def index():
 
     if request.method == "POST":
         user = request.form["nm"]
+        user = stripSpecial(user)
         quantity = request.form["quant"]
         un = request.form["units"]
         country = request.form["region"]
