@@ -1,5 +1,6 @@
 from pytrends.request import TrendReq
 import requests
+from time import sleep
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 from collections import defaultdict
@@ -60,11 +61,11 @@ def get_query(ind, topic, timeframe):
 
     while related_queries is None:
         cnt += 1
-        search_date_first = search_date_first - timedelta(days=1)
+        search_date_first = search_date_first - timedelta(days=2)
         pytrends.build_payload(kw_list, cat=0, timeframe= str(search_date_first) + " " + str(search_date_second), geo='', gprop='')
         related_queries = pytrends.related_queries()[topic]['top']
 
-        if cnt > 10:
+        if cnt > 5:
             break
 
     if related_queries is not None:
@@ -78,29 +79,36 @@ def get_query(ind, topic, timeframe):
                 break
             query_freq[row['query']] += row['value']
 
-    return [search_date_first.strftime("%Y/%m/%d"), search_date_second.strftime("%Y/%m/%d"), sorted(query_freq.items(), key = lambda v: v[1], reverse=True)]
+    return [search_date_first.strftime("%Y/%m/%d"), search_date_second.strftime("%Y/%m/%d"), sorted(query_freq.items(), key = lambda v: v[1], reverse=True), topic]
 
 
 def get_sites(data):
-    data = data[0]
+    print(data)
+    date = data[0]
     before = data[1]
-    links = []
-    for search in data[2]:
-        page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
-        # https://www.google.com/search?q=osu+before:2020-01-26+after:2020-01-22
-        soup = BeautifulSoup(page.content, 'html.parser')
-        links = soup.find_all("a")
-        strlinks = []
-        for i in links:
-            st = i["href"][:7]
-            if st == "/url?q=" and "youtube" not in i["href"]:
-                if "&sa=" in i["href"]:
-                    idx = i["href"].index("&sa=")
-                else:
-                    idx = len(st)
-                strlinks.append(i["href"][7:idx])
-        links += strlinks[:3]
-    return links
+    all_links = []
+
+    if len(data[2]) < 1:
+        data[2] = [(data[3], 100)]
+
+    for search,temp in data[2]:
+        if temp > 60:
+            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
+            # https://www.google.com/search?q=osu+before:2020-01-26+after:2020-01-22
+            soup = BeautifulSoup(page.content, 'html.parser')
+            links = soup.find_all("a")
+            strlinks = []
+            for i in links:
+                st = i["href"][:7]
+                if st == "/url?q=" and "youtube" not in i["href"]:
+                    if "&sa=" in i["href"]:
+                        idx = i["href"].index("&sa=")
+                    else:
+                        idx = len(st)
+                    strlinks.append(i["href"][7:idx])
+            all_links += strlinks[:2]
+
+    return all_links
 
 
 topic = input("What would you like to search for? ")
@@ -112,10 +120,14 @@ options = ["1-y","1-m","7-d"]
 while timeframe not in options:
     timeframe = input("Select a timeframe (1-y, 1-m, 7-d): ")
 
+links = []
 
 for i in range(3):
     query = get_query(i, topic, timeframe)
     if query is None:
         print("No large events found, please try refining your search terms")
     else:
-        print(query)
+        links += get_sites(query)
+
+for link in links:
+    print(link)
