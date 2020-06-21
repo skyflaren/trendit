@@ -24,9 +24,9 @@ def get_query(ind, topic, amt, unit, region):
     elif unit == "D":
         old_time = current_time - timedelta(days=int(amt))
     elif unit == "M":
-        old_time = current_time - timedelta(days=int(amt*30))
+        old_time = current_time - timedelta(days=int(amt)*30)
     elif unit == "Y":
-        old_time = current_time - timedelta(days=int(amt * 365))
+        old_time = current_time - timedelta(days=int(amt) * 365)
 
     print("Time frame:")
     print(str(old_time) + " " + str(current_time))

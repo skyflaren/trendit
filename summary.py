@@ -47,5 +47,6 @@ def get_results(topic, amt, unit, region):
     #             summary = summarize(text, words=100)
     #
     #         entries.append([link, summary])
-
+    for l,s in entries:
+        print(l + "   " + s)
     return entries
