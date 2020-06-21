@@ -4,21 +4,15 @@ from summa.summarizer import summarize
 from summa.keywords import keywords
 from retrieve_trends import *
 
-def get_results():
-    topic = input("What would you like to search for? ")
+def get_results(topic, amt, unit, region):
     topic = topic.strip()
 
     timeframe = ""
-    options = ["1-y","1-m","7-d"]
-
-    # gets time frame input
-    while timeframe not in options:
-        timeframe = input("Select a timeframe (1-y, 1-m, 7-d): ")
 
     links = []
 
     for i in range(3):
-        query = get_query(i, topic, timeframe)
+        query = get_query(i, topic, amt, unit, "" if region == "WW" else region)
         if query is None:
             print("No large events found, please try refining your search terms")
         else:
@@ -54,9 +48,4 @@ def get_results():
     #
     #         entries.append([link, summary])
 
-    for l,s in entries:
-        print(l)
-        print(s)
     return entries
-
-get_results()

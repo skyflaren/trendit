@@ -9,7 +9,7 @@ from collections import defaultdict
 import pandas as pd
 
 
-def get_query(ind, topic, timeframe):
+def get_query(ind, topic, amt, unit, region):
     query_freq = defaultdict(int)
 
     pytrends = TrendReq(hl='en-US', tz=360)
@@ -19,12 +19,14 @@ def get_query(ind, topic, timeframe):
 
     old_time = current_time
 
-    if timeframe == "1-y":
-        old_time = current_time - timedelta(days=365)
-    elif timeframe == "1-m":
-        old_time = current_time - timedelta(days=30)
-    elif timeframe == "7-d":
-        old_time = current_time - timedelta(days=7)
+    if unit == "H":
+        old_time = current_time - timedelta(hours=int(amt))
+    elif unit == "D":
+        old_time = current_time - timedelta(days=int(amt))
+    elif unit == "M":
+        old_time = current_time - timedelta(days=int(amt*30))
+    elif unit == "Y":
+        old_time = current_time - timedelta(days=int(amt * 365))
 
     print("Time frame:")
     print(str(old_time) + " " + str(current_time))
@@ -35,7 +37,7 @@ def get_query(ind, topic, timeframe):
     old_date = datetime.date(old_time)
     current_date = datetime.date(current_time)
 
-    pytrends.build_payload(kw_list, cat=0, timeframe= str(old_date) + " " + str(current_date), geo='', gprop='')
+    pytrends.build_payload(kw_list, cat=0, timeframe= str(old_date) + " " + str(current_date), geo=region, gprop='')
 
     interest_over_time = pytrends.interest_over_time()
 
@@ -64,7 +66,7 @@ def get_query(ind, topic, timeframe):
     while related_queries is None:
         cnt += 1
         search_date_first = search_date_first - timedelta(days=2)
-        pytrends.build_payload(kw_list, cat=0, timeframe= str(search_date_first) + " " + str(search_date_second), geo='', gprop='')
+        pytrends.build_payload(kw_list, cat=0, timeframe= str(search_date_first) + " " + str(search_date_second), geo=region, gprop='')
         related_queries = pytrends.related_queries()[topic]['top']
 
         if cnt > 5:

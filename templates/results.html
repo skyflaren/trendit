@@ -15,7 +15,9 @@
                 {% for search in trendingSearches %}
                     <a class="trending-suggestion">{{search}}</a>
                 {% endfor %}
-
+                {% for link, summary in entries %}
+                    <a class="trending-suggestion">{{link}}</a>
+                {% endfor %}
                 <div class="icons">
                     <a style="display:inline-block;" href="https://github.com/skyflaren/trendit"><i class="fa fa-github" aria-hidden="true"></i></a>
                     <a style="display:inline-block;" href="https://github.com/skyflaren/trendit"><img class="fa devpost" src="{{ url_for('static',filename='img/devpost.png') }}"></img></a>
