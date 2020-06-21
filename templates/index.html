@@ -13,7 +13,7 @@
                 <h1>TRENDING</h1>
                 <hr class="trending-bar">
                 {% for search in trendingSearches %}
-                    <a class="trending-suggestion">{{search}}</a>
+                    <a class="trending-suggestion" href="{{ search }}">{{search}}</a>
                 {% endfor %}
 
                 <div class="icons">

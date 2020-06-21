@@ -17,6 +17,11 @@ def index():
     else:
         return render_template("index.html", trendingSearches=get_trending_list())
 
+@app.route("/<usr>")
+def trending(usr):
+    entries = get_results(usr, "1", "M", "WW")
+    return render_template("results.html", trendingSearches=get_trending_list(), entries=entries)
+
 
 @app.route("/<usr>/<quant>/<units>/<region>")
 def user(usr,quant,units,region):

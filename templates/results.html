@@ -13,7 +13,7 @@
                 <h1>TRENDING</h1>
                 <hr class="trending-bar">
                 {% for search in trendingSearches %}
-                    <a class="trending-suggestion">{{search}}</a>
+                    <a class="trending-suggestion" href="{{ search }}">{{search}}</a>
                 {% endfor %}
                 <div class="icons">
                     <a style="display:inline-block;" href="https://github.com/skyflaren/trendit"><i class="fa fa-github" aria-hidden="true"></i></a>
@@ -23,11 +23,41 @@
 
             <div class="main-area">
                 <div class="searchbar">
-                    <form id="example" action="#" method = "post">
+
+                <form id="example" action="#" method = "post">
                         <a id="globe-mini-par" href="{{ url_for('index') }}"><img id="globe-mini" src="{{ url_for('static',filename='img/globe-full.svg') }}"></a>
                         <input type="text" placeholder="Search.." name="nm">
                         <button id="submit" type="submit"><i class="fa fa-search"></i></button>
-                    </form>
+
+                <div class = "options">
+
+                    <label id = "descript" >Results in the last: </label>
+                    <select  id="quant" class="input-field" name="quant">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                    </select>
+                    <select id="units" class="input-field" name="units">
+                            <option value="H">Hour(s)</option>
+                            <option value="D">Day(s)</option>
+                            <option value="M">Month(s)</option>
+                            <option value="Y">Year(s)</option>
+
+                    </select>
+                    <select id="region" class="input-field" name="region">
+                            <option value="US">United States</option>
+                            <option value="CA">Canada</option>
+                            <option value="UK">UK</option>
+                            <option value="WW">World Wide</option>
+                    </select>
+                    <script src= "{{ url_for('static',filename='js/moon.js') }}"></script>
+
+                </div>
+                  </form>
+
                 </div>
 
                 <div class="link-results">
