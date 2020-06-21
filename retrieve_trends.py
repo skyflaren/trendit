@@ -86,7 +86,7 @@ def get_sites(data):
     print(data)
     date = data[0]
     before = data[1]
-    all_links = []
+    ret = []
 
     if len(data[2]) < 1:
         data[2] = [(data[3], 100)]
@@ -94,6 +94,7 @@ def get_sites(data):
     for search,temp in data[2]:
         if temp > 60:
             page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
+            sleep(1)
             # https://www.google.com/search?q=osu+before:2020-01-26+after:2020-01-22
             soup = BeautifulSoup(page.content, 'html.parser')
             links = soup.find_all("a")
@@ -106,9 +107,9 @@ def get_sites(data):
                     else:
                         idx = len(st)
                     strlinks.append(i["href"][7:idx])
-            all_links += strlinks[:2]
-
-    return all_links
+            ret += strlinks[:2]
+    print(ret)
+    return ret
 
 
 topic = input("What would you like to search for? ")
