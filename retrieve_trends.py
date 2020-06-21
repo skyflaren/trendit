@@ -93,9 +93,10 @@ def get_sites(data):
 
     for search,temp in data[2]:
         if temp > 60:
-            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
+            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date, headers)
             sleep(1)
-            # https://www.google.com/search?q=osu+before:2020-01-26+after:2020-01-22
+            print(page)
+
             soup = BeautifulSoup(page.content, 'html.parser')
             links = soup.find_all("a")
             strlinks = []
@@ -108,8 +109,36 @@ def get_sites(data):
                         idx = len(st)
                     strlinks.append(i["href"][7:idx])
             ret += strlinks[:2]
-    print(ret)
+
+            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws",
+                                headers)
+            sleep(1)
+            print(page)
+
+            soup = BeautifulSoup(page.content, 'html.parser')
+            links = soup.find_all("a")
+            strlinks = []
+            for i in links:
+                st = i["href"][:7]
+                if st == "/url?q=" and "youtube" not in i["href"]:
+                    if "&sa=" in i["href"]:
+                        idx = i["href"].index("&sa=")
+                    else:
+                        idx = len(st)
+                    strlinks.append(i["href"][7:idx])
+            ret += strlinks[:1]
+
     return ret
+
+
+def search(page):
+    page = requests.get(page)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    paragraphs = soup.find_all("p")
+    txt = ""
+    for i in paragraphs:
+        txt += i.getText()
+    return txt
 
 
 topic = input("What would you like to search for? ")
@@ -130,5 +159,7 @@ for i in range(3):
     else:
         links += get_sites(query)
 
+links = set(links)
 for link in links:
     print(link)
+    print(search(link))
