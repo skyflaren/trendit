@@ -2,6 +2,7 @@ from flask import *
 from retrieve_trends import *
 from summary import *
 
+
 app = Flask(__name__)
 
 
@@ -37,4 +38,6 @@ def user(usr,quant,units,region):
         return render_template("results.html", trendingSearches=get_trending_list(), entries=entries)
 
 if __name__ == "__main__":
+    from gevent import monkey
+    monkey.patch_all()
     app.run(debug=True)
