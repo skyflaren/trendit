@@ -112,7 +112,7 @@ html{
 
 .searchbar{
     margin: auto;
-    height: 70vh;
+    height: 50%;
     display: flex;
     flex-direction: column;
     -webkit-display: flex;
@@ -120,14 +120,14 @@ html{
     -ms-flex-direction: column;
 }
 
-.searchbar #globe{
+#globe{
     width: 35vw;
     max-width: 80vh;
     margin: auto;
     margin-top: -5vw;
 }
 
-.searchbar #moon{
+#moon{
     width: 7vw;
     max-width: 12vh;
     margin: auto;
