@@ -1,5 +1,7 @@
+from gevent import monkey as curious_george
+curious_george.patch_all(thread=False, select=False)
 from pytrends.request import TrendReq
-import requests
+import grequests
 from time import sleep
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
@@ -24,8 +26,8 @@ def get_query(ind, topic, timeframe):
     elif timeframe == "7-d":
         old_time = current_time - timedelta(days=7)
 
-    print("Time frame:")
-    print(str(old_time) + " " + str(current_time))
+    # print("Time frame:")
+    # print(str(old_time) + " " + str(current_time))
 
     kw_list = [topic]
 
@@ -47,9 +49,9 @@ def get_query(ind, topic, timeframe):
     # for index, row in pytrends.related_topics()[topic]['top'].iterrows():
     #     print(row)
 
-    print(largest_interest)
-
-    print("Day: " + str(largest_interest_dates[ind]))
+    # print(largest_interest)
+    # 
+    # print("Day: " + str(largest_interest_dates[ind]))
 
     search_time = pd.Timestamp.to_pydatetime(largest_interest_dates[ind])
     search_date_first = datetime.date(search_time)
@@ -69,10 +71,10 @@ def get_query(ind, topic, timeframe):
             break
 
     if related_queries is not None:
-        print(search_date_first)
-        print(search_date_second)
-
-        print(related_queries)
+        # print(search_date_first)
+        # print(search_date_second)
+        # 
+        # print(related_queries)
 
         for index, row in related_queries.iterrows():
             if index > 9:
@@ -90,50 +92,65 @@ def get_sites(data):
 
     if len(data[2]) < 1:
         data[2] = [(data[3], 100)]
+    news = []
+    notnews = []
+    for search, z in data[2]:
+        if z > 60:
+            search = search.replace(" ", "+")
+            print("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
+            notnews.append("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
+            news.append("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws")
+           
+    print("beforemap") 
+    tmp = grequests.map((grequests.get(u) for u in notnews))
+    print("aftermap")
 
-    for search,temp in data[2]:
-        if temp > 60:
-            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
-            sleep(1)
-            print(page)
+    for page in tmp:
+        # page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
+        # sleep(1)
+        # print(page)
 
-            soup = BeautifulSoup(page.content, 'html.parser')
-            links = soup.find_all("a")
-            strlinks = []
-            for i in links:
-                st = i["href"][:7]
-                if st == "/url?q=" and "youtube" not in i["href"] and "support.google" not in i["href"] and "amazon.com" not in i["href"]\
-                        and "accounts.google" not in i["href"]:
-                    if "&sa=" in i["href"]:
-                        idx = i["href"].index("&sa=")
-                    else:
-                        idx = len(st)
-                    strlinks.append([i["href"][7:idx],0])
-            ret += strlinks[:2]
+        soup = BeautifulSoup(page.content, 'html.parser')
+        links = soup.find_all("a")
+        strlinks = []
+        for i in links:
+            st = i["href"][:7]
+            if st == "/url?q=" and "youtube" not in i["href"] and "support.google" not in i["href"] and "amazon.com" not in i["href"]\
+                    and "accounts.google" not in i["href"]:
+                if "&sa=" in i["href"]:
+                    idx = i["href"].index("&sa=")
+                else:
+                    idx = len(st)
+                strlinks.append([i["href"][7:idx],0])
+        ret += strlinks[:2]
 
-            page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws")
-            sleep(1)
-            print(page)
+    print("beforemap")
+    tmp2 = grequests.map((grequests.get(u) for u in news))
+    print("aftermap")
 
-            soup = BeautifulSoup(page.content, 'html.parser')
-            links = soup.find_all("a")
-            strlinks = []
-            for i in links:
-                st = i["href"][:7]
-                if st == "/url?q=" and "youtube" not in i["href"] and "support.google" not in i["href"] and "amazon.com" not in i["href"]\
-                        and "accounts.google" not in i["href"]:
-                    if "&sa=" in i["href"]:
-                        idx = i["href"].index("&sa=")
-                    else:
-                        idx = len(st)
-                    strlinks.append([i["href"][7:idx],1])
-            ret += strlinks[:1]
+    for page in tmp2:
+        # page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws")
+        # sleep(1)
+        # print(page)
 
+        soup = BeautifulSoup(page.content, 'html.parser')
+        links = soup.find_all("a")
+        strlinks = []
+        for i in links:
+            st = i["href"][:7]
+            if st == "/url?q=" and "youtube" not in i["href"] and "support.google" not in i["href"] and "amazon.com" not in i["href"]\
+                    and "accounts.google" not in i["href"]:
+                if "&sa=" in i["href"]:
+                    idx = i["href"].index("&sa=")
+                else:
+                    idx = len(st)
+                strlinks.append([i["href"][7:idx],1])
+        ret += strlinks[:1]
+    print(ret)
     return ret
 
 
 def search(page):
-    page = requests.get(page)
     soup = BeautifulSoup(page.content, 'html.parser')
     paragraphs = soup.find_all("p")
     txt = ""
