@@ -17,13 +17,13 @@ def index():
     else:
         return render_template("index.html", trendingSearches=get_trending_list())
 
-@app.route("/<usr>")
+@app.route("/<usr>", methods=["POST", "GET"])
 def trending(usr):
     entries = get_results(usr, "1", "M", "WW")
-    return render_template("results.html", trendingSearches=get_trending_list(), entries=entries)
+    return redirect(url_for("user", usr=usr, quant="1", units="M", region="WW"));
 
 
-@app.route("/<usr>/<quant>/<units>/<region>")
+@app.route("/<usr>/<quant>/<units>/<region>", methods=["POST", "GET"])
 def user(usr,quant,units,region):
     entries = get_results(usr, quant, units, region)
     if request.method == "POST":
