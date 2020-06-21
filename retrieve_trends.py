@@ -163,7 +163,7 @@ def search(page):
     return txt
 
 def stripSpecial(word):
-    alpha = 'abcdefghijklmnoqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ '
+    alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ '
     for c in word:
         if c not in alpha:
             word = word.replace(c,'')

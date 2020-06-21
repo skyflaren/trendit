@@ -271,3 +271,8 @@ select {
     color: var(--gry3);
     line-height: 1.6;
 }
+
+.entry-summary{
+    color: var(--gry4);
+    line-height: 1.6;
+}
