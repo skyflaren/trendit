@@ -70,6 +70,7 @@ def get_query(ind, topic, amt, unit, region):
         cnt += 1
         search_date_first = search_date_first - timedelta(days=2)
         pytrends.build_payload(kw_list, cat=0, timeframe= str(search_date_first) + " " + str(search_date_second), geo=region, gprop='')
+        print(pytrends.related_queries())
         related_queries = pytrends.related_queries()[topic]['top']
 
         if cnt > 5:
@@ -161,8 +162,18 @@ def search(page):
         txt += i.getText()
     return txt
 
+def stripSpecial(word):
+    alpha = 'abcdefghijklmnoqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ '
+    for c in word:
+        if c not in alpha:
+            word = word.replace(c,'')
+    return word
+
 def get_trending_list():
     pytrends = TrendReq(hl='en-US', tz=360)
-    return pytrends.trending_searches(pn='united_states')[0][:7].values.tolist()
+    trending_list = pytrends.trending_searches(pn='united_states')[0][:7].values.tolist()
+    for i in range(len(trending_list)):
+        trending_list[i] = stripSpecial(trending_list[i])
+    return trending_list
 
 
