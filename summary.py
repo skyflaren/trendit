@@ -32,12 +32,17 @@ def get_results():
             if val:
                 news.append(link)
             else:
-                entries.append([link,""])
+                notnews.append(link)
     for idx, link in enumerate(grequests.map((grequests.get(u) for u in news))):
         text = search(link)
-        summary = summarize(text, words=100)
-        entries.append([news[idx], summary])
 
+        summary = summarize(text, words=150)
+        if "Cloudflare" in summary:
+            print("Cloudflare")
+            summary = ""
+        entries.append([news[idx], summary])
+    for link in notnews:
+        entries.append([link, ""])
 
     # for link, val in links:
     #     if link not in visited:
@@ -49,5 +54,9 @@ def get_results():
     #
     #         entries.append([link, summary])
 
+    for l,s in entries:
+        print(l)
+        print(s)
     return entries
 
+get_results()
