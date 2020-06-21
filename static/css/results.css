@@ -217,6 +217,16 @@ html{
     display: table;
 }
 
+.entry-link{
+    color: var(--gry3);
+    line-height: 1.6;
+}
+
+.entry-summary{
+    color: var(--gry4);
+    line-height: 1.6;
+}
+
 .input-field{
    padding: 10px;
    width: 25%
@@ -267,12 +277,3 @@ select {
       background-color: #efefef;
 }
 
-.entry-link{
-    color: var(--gry3);
-    line-height: 1.6;
-}
-
-.entry-summary{
-    color: var(--gry4);
-    line-height: 1.6;
-}
