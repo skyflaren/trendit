@@ -1,37 +1,51 @@
-let searchBar = document.getElementById("example");
+let submit = document.getElementById("submit");
 let moon = document.getElementById("moon");
 
 let enter, leave;
+let moonStart = moon.style.marginRight;
+let moonStartY = moon.style.marginTop;
 
-searchBar.addEventListener("mouseenter", function(){
+var pos = moon.style.marginRight;
+var posY = -30.095;
+
+
+submit.addEventListener("mouseenter", function(){
+
     console.log("itworks");
-    var pos = moon.style.marginRight.replace('px', '');
     clearInterval(leave);
     clearInterval(enter);
     enter = setInterval(function(){
-        if(pos>233){
+        console.log(moonStartY);
+        if(pos>26){
             clearInterval(enter);
         }
         else{
             pos++;
-            moon.style.marginRight = pos + 'px';
+            posY = (Math.sqrt(600-(pos-4)*(pos-4)));
+            moon.style.marginRight = pos + 'vw';
+            moon.style.marginTop = posY-11.80 - 27 + 'vw';
+            moon.style.marginBottom = -posY-3.20 +27 + 'vw';
         }
-    }, 20);
+    }, 15);
 })
 
 
-searchBar.addEventListener("mouseleave", function(){
+submit.addEventListener("mouseleave", function(){
     console.log("itLEAVES");
-    var pos = moon.style.marginRight.replace('px', '');
-    clearInterval(enter);
     clearInterval(leave);
+    clearInterval(enter);
     leave = setInterval(function(){
-        if(pos<50){
+        console.log(moonStartY);
+        if(pos<=0){
+            console.log("NIHAOMAT");
             clearInterval(leave);
         }
         else{
-            pos--;
-            moon.style.marginRight = pos + 'px';
+            pos-- ;
+            posY = (Math.sqrt(600-(pos-4)*(pos-4)));
+            moon.style.marginRight = pos + 'vw';
+            moon.style.marginTop = posY-11.80 - 27 + 'vw';
+            moon.style.marginBottom = -posY-3.20 +27 + 'vw';
         }
-    }, 20);
+    }, 15);
 })
