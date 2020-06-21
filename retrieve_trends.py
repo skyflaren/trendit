@@ -79,6 +79,28 @@ def get_query(ind, topic, timeframe):
     return [search_date_first.strftime("%Y/%m/%d"), search_date_second.strftime("%Y/%m/%d"), sorted(query_freq.items(), key = lambda v: v[1], reverse=True)]
 
 
+def get_sites(data):
+    data = data[0]
+    before = data[1]
+    links = []
+    for search in data[2]:
+        page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
+        # https://www.google.com/search?q=osu+before:2020-01-26+after:2020-01-22
+        soup = BeautifulSoup(page.content, 'html.parser')
+        links = soup.find_all("a")
+        strlinks = []
+        for i in links:
+            st = i["href"][:7]
+            if st == "/url?q=" and "youtube" not in i["href"]:
+                if "&sa=" in i["href"]:
+                    idx = i["href"].index("&sa=")
+                else:
+                    idx = len(st)
+                strlinks.append(i["href"][7:idx])
+        links += strlinks[:3]
+    return links
+
+
 topic = input("What would you like to search for? ")
 
 timeframe = ""
