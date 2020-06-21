@@ -26,8 +26,15 @@ def trending(usr):
 @app.route("/<usr>/<quant>/<units>/<region>")
 def user(usr,quant,units,region):
     entries = get_results(usr, quant, units, region)
-
-    return render_template("results.html", trendingSearches=get_trending_list(), entries=entries)
+    if request.method == "POST":
+        user = request.form["nm"]
+        user = stripSpecial(user)
+        quantity = request.form["quant"]
+        un = request.form["units"]
+        country = request.form["region"]
+        return redirect(url_for("user", usr=user, quant = quantity, units = un, region = country))
+    else:
+        return render_template("results.html", trendingSearches=get_trending_list(), entries=entries)
 
 if __name__ == "__main__":
     app.run(debug=True)
