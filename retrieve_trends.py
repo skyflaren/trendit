@@ -46,8 +46,8 @@ def get_query(ind, topic, timeframe):
 
     largest_interest_dates = largest_interest.index
 
-    for index, row in pytrends.related_topics()[topic]['top'].iterrows():
-        print(row)
+    # for index, row in pytrends.related_topics()[topic]['top'].iterrows():
+    #     print(row)
 
     print(largest_interest)
 
@@ -95,7 +95,7 @@ def get_sites(data):
     news = []
     notnews = []
     for search, z in data[2]:
-        if z > 60:
+        if z > 70:
             search = search.replace(" ", "+")
             print("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
             notnews.append("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
@@ -157,5 +157,9 @@ def search(page):
     for i in paragraphs:
         txt += i.getText()
     return txt
+
+def get_trending_list():
+    pytrends = TrendReq(hl='en-US', tz=360)
+    return pytrends.trending_searches(pn='united_states')[0][:7].values.tolist()
 
 

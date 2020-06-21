@@ -1,4 +1,5 @@
 from flask import *
+from retrieve_trends import *
 
 app = Flask(__name__)
 
@@ -10,7 +11,7 @@ def index():
         user = request.form["nm"]
         return redirect(url_for("user", usr=user))
     else:
-        return render_template("index.html")
+        return render_template("index.html", trendingSearches=get_trending_list())
 
 
 @app.route("/<usr>")
