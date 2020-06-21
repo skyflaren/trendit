@@ -110,9 +110,7 @@ def get_sites(data):
         # sleep(1)
         # print(page)
 
-
-        test = SoupStrainer('div',{'id': 'search'})
-        soup = BeautifulSoup(page.content, "html.parser", parse_only=test)
+        soup = BeautifulSoup(page.content, "html.parser")
         links = soup.find_all("a")
         strlinks = []
         for i in links:
@@ -135,8 +133,7 @@ def get_sites(data):
         # sleep(1)
         # print(page)
 
-        test = SoupStrainer('div', {'id': 'search'})
-        soup = BeautifulSoup(page.content, "html.parser", parse_only=test)
+        soup = BeautifulSoup(page.content, "html.parser")
         links = soup.find_all("a")
         strlinks = []
         for i in links:
