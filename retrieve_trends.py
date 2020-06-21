@@ -93,10 +93,6 @@ def get_sites(data):
 
     for search,temp in data[2]:
         if temp > 60:
-
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36"}
-
             page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date, headers)
             sleep(1)
             print(page)
@@ -135,6 +131,16 @@ def get_sites(data):
     return ret
 
 
+def search(page):
+    page = requests.get(page)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    paragraphs = soup.find_all("p")
+    txt = ""
+    for i in paragraphs:
+        txt += i.getText()
+    return txt
+
+
 topic = input("What would you like to search for? ")
 
 timeframe = ""
@@ -156,3 +162,4 @@ for i in range(3):
 links = set(links)
 for link in links:
     print(link)
+    print(search(link))
