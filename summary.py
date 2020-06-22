@@ -60,6 +60,8 @@ def get_results(topic, amt, unit, region):
     for l,s in entries:
         print(l)
         print(s)
+    if len(entries) == 0:
+        entries.append(["", "No large events were found, please try refining your search terms or increasing your time range."])
     return entries
 
 

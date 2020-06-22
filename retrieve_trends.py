@@ -19,10 +19,8 @@ def get_query(ind, topic, amt, unit, region):
 
     old_time = current_time
 
-    if unit == "H":
-        old_time = current_time - timedelta(hours=int(amt))
-    elif unit == "D":
-        old_time = current_time - timedelta(days=int(amt))
+    if unit == "D":
+        old_time = current_time - timedelta(days=int(amt)+1)
     elif unit == "M":
         old_time = current_time - timedelta(days=int(amt)*30)
     elif unit == "Y":
