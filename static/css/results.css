@@ -194,7 +194,7 @@ html{
 
 #example button {
     float: left;
-    width: 15%;
+    width: 20%;
     padding: 10px;
     background: var(--gry3);
     color: white;
@@ -204,11 +204,12 @@ html{
     cursor: pointer;
 
     opacity: 0.7;
-    transition: opacity 0.2s;
-    -webkit-transition: opacity 0.2s;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
 }
 
 #example button:hover {
+    background: var(--orange1);
     opacity: 0.9;
 }
 
@@ -239,6 +240,19 @@ html{
    position: relative;
    border: none;
    outline: none;
+
+    transition: all 0.2s;
+   -webkit-transition: all 0.2s;
+
+   border-bottom-left-radius: 0px;
+   border-bottom-right-radius: 0px;
+   border-top-left-radius: 0px;
+   border-top-right-radius: 0px;
+
+}
+
+.input-field:hover{
+    background: rgba(40, 40, 40, 0.9);
 }
 
 option {
