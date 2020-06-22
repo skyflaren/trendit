@@ -20,7 +20,6 @@ def index():
 
 @app.route("/<usr>", methods=["POST", "GET"])
 def trending(usr):
-    entries = get_results(usr, "1", "M", "WW")
     return redirect(url_for("user", usr=usr, quant="1", units="M", region="WW"));
 
 

@@ -121,7 +121,7 @@ def get_sites(data):
         strlinks = []
         for i in links:
             st = i["href"][:7]
-            if st == "/url?q=" and "youtube" not in i["href"] and ".google" not in i["href"]:
+            if st == "/url?q=" and "youtube" not in i["href"] and ".google" not in i["href"] and "twitter" not in i["href"]:
                 if "&sa=" in i["href"]:
                     idx = i["href"].index("&sa=")
                 else:
@@ -143,7 +143,7 @@ def get_sites(data):
         strlinks = []
         for i in links:
             st = i["href"][:7]
-            if st == "/url?q=" and "youtube" not in i["href"] and ".google" not in i["href"]:
+            if st == "/url?q=" and "youtube" not in i["href"] and ".google" not in i["href"] and "twitter" not in i["href"]:
                 if "&sa=" in i["href"]:
                     idx = i["href"].index("&sa=")
                 else:
