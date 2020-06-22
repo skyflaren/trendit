@@ -70,7 +70,6 @@ def get_query(ind, topic, amt, unit, region):
         cnt += 1
         search_date_first = search_date_first - timedelta(days=2)
         pytrends.build_payload(kw_list, cat=0, timeframe= str(search_date_first) + " " + str(search_date_second), geo=region, gprop='')
-        print(pytrends.related_queries())
         related_queries = pytrends.related_queries()[topic]['top']
 
         if cnt > 5:

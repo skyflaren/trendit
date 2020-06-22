@@ -20,11 +20,14 @@ def index():
 
 @app.route("/<usr>", methods=["POST", "GET"])
 def trending(usr):
-    return redirect(url_for("user", usr=usr, quant="1", units="M", region="WW"));
+    return redirect(url_for("user", usr=usr, quant="7", units="D", region="WW"));
 
 
 @app.route("/<usr>/<quant>/<units>/<region>", methods=["POST", "GET"])
 def user(usr,quant,units,region):
+    if region != "CA" and region != "US" and region != "UK" and region != "WW":
+        return redirect(url_for("trending", usr=usr))
+
     entries = get_results(usr, quant, units, region)
     if request.method == "POST":
         user = request.form["nm"]
