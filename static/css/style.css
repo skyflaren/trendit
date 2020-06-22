@@ -309,3 +309,5 @@ select {
     -webkit-transition: opacity 0.2s;
 }
 */
+
+.input:-webkit-autofill {transition: background-color 5000s ease-in-out 0s;}

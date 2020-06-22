@@ -70,7 +70,6 @@ def get_query(ind, topic, amt, unit, region):
         cnt += 1
         search_date_first = search_date_first - timedelta(days=2)
         pytrends.build_payload(kw_list, cat=0, timeframe= str(search_date_first) + " " + str(search_date_second), geo=region, gprop='')
-        print(pytrends.related_queries())
         related_queries = pytrends.related_queries()[topic]['top']
 
         if cnt > 5:
@@ -121,7 +120,7 @@ def get_sites(data):
         strlinks = []
         for i in links:
             st = i["href"][:7]
-            if st == "/url?q=" and "youtube" not in i["href"] and ".google" not in i["href"]:
+            if st == "/url?q=" and "youtube" not in i["href"] and ".google" not in i["href"] and "twitter" not in i["href"]:
                 if "&sa=" in i["href"]:
                     idx = i["href"].index("&sa=")
                 else:
@@ -143,7 +142,7 @@ def get_sites(data):
         strlinks = []
         for i in links:
             st = i["href"][:7]
-            if st == "/url?q=" and "youtube" not in i["href"] and ".google" not in i["href"]:
+            if st == "/url?q=" and "youtube" not in i["href"] and ".google" not in i["href"] and "twitter" not in i["href"]:
                 if "&sa=" in i["href"]:
                     idx = i["href"].index("&sa=")
                 else:
