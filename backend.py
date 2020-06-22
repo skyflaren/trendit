@@ -26,7 +26,7 @@ def trending(usr):
 @app.route("/<usr>/<quant>/<units>/<region>", methods=["POST", "GET"])
 def user(usr,quant,units,region):
     if region != "CA" and region != "US" and region != "UK" and region != "WW":
-        return redirect(url_for("trending", usr=usr))
+        return redirect(url_for("trending", usr=region))
 
     entries = get_results(usr, quant, units, region)
     if request.method == "POST":
