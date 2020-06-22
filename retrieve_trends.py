@@ -26,8 +26,8 @@ def get_query(ind, topic, amt, unit, region):
     elif unit == "Y":
         old_time = current_time - timedelta(days=int(amt) * 365)
 
-    print("Time frame:")
-    print(str(old_time) + " " + str(current_time))
+    # print("Time frame:")
+    # print(str(old_time) + " " + str(current_time))
 
     kw_list = [topic]
 
@@ -52,9 +52,9 @@ def get_query(ind, topic, amt, unit, region):
     # for index, row in pytrends.related_topics()[topic]['top'].iterrows():
     #     print(row)
 
-    print(largest_interest)
+    # print(largest_interest)
 
-    print("Day: " + str(largest_interest_dates[ind]))
+    # print("Day: " + str(largest_interest_dates[ind]))
 
     search_time = pd.Timestamp.to_pydatetime(largest_interest_dates[ind])
     search_date_first = datetime.date(search_time)
@@ -74,10 +74,10 @@ def get_query(ind, topic, amt, unit, region):
             break
 
     if related_queries is not None:
-        print(search_date_first)
-        print(search_date_second)
-
-        print(related_queries)
+        # print(search_date_first)
+        # print(search_date_second)
+        #
+        # print(related_queries)
 
         for index, row in related_queries.iterrows():
             if index > 9:
@@ -88,7 +88,7 @@ def get_query(ind, topic, amt, unit, region):
 
 
 def get_sites(data):
-    print(data)
+    # print(data)
     date = data[0]
     before = data[1]
     ret = []
@@ -100,13 +100,13 @@ def get_sites(data):
     for search, z in data[2]:
         if z > 70:
             search = search.replace(" ", "+")
-            print("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
+            # print("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
             notnews.append("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
             news.append("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws")
 
-    print("beforemap")
+    # print("beforemap")
     tmp = grequests.map((grequests.get(u) for u in notnews))
-    print("aftermap")
+    # print("aftermap")
 
     for page in tmp:
         # page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date)
@@ -126,9 +126,9 @@ def get_sites(data):
                 strlinks.append([i["href"][7:idx],0])
         ret += strlinks[:2]
 
-    print("beforemap")
+    # print("beforemap")
     tmp2 = grequests.map((grequests.get(u) for u in news))
-    print("aftermap")
+    # print("aftermap")
 
     for page in tmp2:
         # page = requests.get("https://www.google.com/search?q=" + search + "+before:" + before + "+after:" + date + "&tbm=nws")
@@ -147,7 +147,7 @@ def get_sites(data):
                     idx = len(st)
                 strlinks.append([i["href"][7:idx],1])
         ret += strlinks[:1]
-    print(ret)
+    # print(ret)
     return ret
 
 

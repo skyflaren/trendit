@@ -13,9 +13,8 @@ def get_results(topic, amt, unit, region):
 
     for i in range(3):
         query = get_query(i, topic, amt, unit, "" if region == "WW" else region)
-        if query is None:
-            print("No large events found, please try refining your search terms")
-        else:
+        if query is not None:
+            # print("No large events found, please try refining your search terms")
             links += get_sites(query)
 
     entries = []
@@ -57,9 +56,9 @@ def get_results(topic, amt, unit, region):
     #             summary = summarize(text, words=100)
     #
     #         entries.append([link, summary])
-    for l,s in entries:
-        print(l)
-        print(s)
+    # for l,s in entries:
+    #     print(l)
+    #     print(s)
     if len(entries) == 0:
         entries.append(["", "No large events were found, please try refining your search terms or increasing your time range."])
     return entries

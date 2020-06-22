@@ -55,7 +55,7 @@ html{
 .trending h1{
     color: var(--orange1);
     font-size: calc(1vw + 10px);
-    font-weight: 300;
+    font-weight: 100;
     margin: 0px auto;
 }
 
